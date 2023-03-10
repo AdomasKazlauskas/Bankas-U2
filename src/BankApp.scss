@@ -1,0 +1,141 @@
+html {
+  background-color: #1c3041;
+}
+
+.frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+td {
+  width: 250px;
+  height: 30px;
+  background-color: #7ebdc2;
+  text-align: center;
+}
+
+.itemButtonGap {
+  display: flex;
+  gap: 10px;
+  padding-left: 13px;
+  margin-bottom: 3px;
+}
+
+.cashInput {
+  margin-bottom: 3px;
+}
+
+.cashAlign {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.tableTop {
+  width: 250px;
+  height: 30px;
+  background-color: #366a6e;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.addToList {
+  margin-bottom: 30px;
+  & input {
+    width: 230px;
+    height: 30px;
+  }
+  & button {
+    margin-left: 20px;
+  }
+}
+
+.some-button {
+  background-color: #366a6e;
+  border: 1px solid #1c3041;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover:enabled {
+    filter: brightness(120%);
+    color: white;
+    border: 1px solid white;
+    box-shadow: 2px 2px 2px #1c3041;
+  }
+  &:disabled {
+    background-color: lightgray;
+    opacity: 0.7;
+    cursor: default;
+  }
+}
+
+.header-container {
+  background-color: #7ebdc2;
+  border-bottom: solid 4px #1c3041;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.header-info {
+  background-color: white;
+  color: #1c3041;
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #1c3041;
+  font-weight: bold;
+  &:hover {
+    background-color: #1c3041;
+    color: white;
+    border: 1px solid white;
+    box-shadow: 3px 3px 3px #1c3041;
+  }
+}
+
+header img {
+  height: 400%;
+}
+
+.bank-name {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  height: 50px;
+  color: #1c3041;
+}
+
+.popup-box {
+  position: fixed;
+  z-index: 100;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  position: relative;
+  width: 20%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.filter-Options {
+  padding-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
