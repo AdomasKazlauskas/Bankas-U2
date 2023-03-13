@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { writeToLocalStorage } from "../functions/localStorage";
+// import { writeToLocalStorage } from "../functions/localStorage"; //
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
+import userService from "../services/userService";
 
 const AddNewAccount = ({ accounts, setAccounts, handlePopUp }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  // const [refresh, setRefresh] = useState(true);
 
-  const handleAddAccount = (event) => {
+  const handleAddAccount = async (event) => {
     event.preventDefault();
     const newAccount = {
       id: uuidv4(),
@@ -15,14 +17,22 @@ const AddNewAccount = ({ accounts, setAccounts, handlePopUp }) => {
       name,
       surname,
     };
+    let response = await userService.addNewUser(newAccount);
+    if (response.ok) {
+      // Display a success message to the user
+      handlePopUp(true, "create");
+    } else {
+      // Handle errors
+      alert("Error adding user");
+    }
+
     const updatedAccounts = [...accounts, newAccount];
 
     setAccounts(updatedAccounts);
-    writeToLocalStorage("accounts", updatedAccounts);
+    // writeToLocalStorage("accounts", updatedAccounts);
 
     setName("");
     setSurname("");
-    handlePopUp(true, "create");
   };
 
   return (

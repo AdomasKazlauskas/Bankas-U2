@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { writeToLocalStorage } from "../functions/localStorage";
+// import { writeToLocalStorage } from "../functions/localStorage";
 import Button from "./Button";
+// import userService from "../Services/userService";
 
 const AccountListItem = ({ account, accounts, setAccounts, handlePopUp }) => {
   const [amount, setAmount] = useState("");
@@ -8,7 +9,7 @@ const AccountListItem = ({ account, accounts, setAccounts, handlePopUp }) => {
   const handleAccountDelete = (id) => {
     const updatedAccounts = accounts.filter((account) => account.id !== id);
     setAccounts(updatedAccounts);
-    writeToLocalStorage("accounts", updatedAccounts);
+    // writeToLocalStorage("accounts", updatedAccounts);
     handlePopUp(true, "delete");
   };
 
@@ -21,7 +22,7 @@ const AccountListItem = ({ account, accounts, setAccounts, handlePopUp }) => {
       account.id === id ? { ...account, cash: account.cash + amount } : account
     );
     setAccounts(updatedAccounts);
-    writeToLocalStorage("accounts", updatedAccounts);
+    // writeToLocalStorage("accounts", updatedAccounts);
     setAmount("");
   };
 
@@ -34,7 +35,7 @@ const AccountListItem = ({ account, accounts, setAccounts, handlePopUp }) => {
       account.id === id ? { ...account, cash: account.cash - amount } : account
     );
     setAccounts(updatedAccounts);
-    writeToLocalStorage("accounts", updatedAccounts);
+    // writeToLocalStorage("accounts", updatedAccounts);
     setAmount("");
   };
 

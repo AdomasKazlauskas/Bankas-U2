@@ -1,0 +1,39 @@
+[
+  { "id": 1, "name": "Volteris", "surname": "Baltietis", "cash": 22 },
+  {
+    "id": "a59d5391-f2a6-4e3d-bf70-60746a97ba2e",
+    "name": "Adomas",
+    "surname": "adietis",
+    "cash": 0
+  },
+  {
+    "id": "81e8df4a-d090-41ec-9196-86600b687c66",
+    "name": "Adomas",
+    "surname": "citietis",
+    "cash": 0
+  },
+  {
+    "id": "c445b92f-bd94-426e-8ac1-2867675490bd",
+    "name": "Adomas",
+    "surname": "dedietis",
+    "cash": 0
+  },
+  {
+    "id": "84d0cd7e-c323-4f08-9896-1d5548f569c4",
+    "name": "Adomas",
+    "surname": "edietis",
+    "cash": 0
+  },
+  {
+    "id": "68ca7075-d70b-4c3b-a44b-64ad1170051d",
+    "name": "Adomas",
+    "surname": "Fedietis",
+    "cash": 0
+  },
+  {
+    "id": "ac9e350b-0b02-4a86-b3f1-01d43883b349",
+    "name": "Adomas",
+    "surname": "Edietis",
+    "cash": 0
+  }
+]
