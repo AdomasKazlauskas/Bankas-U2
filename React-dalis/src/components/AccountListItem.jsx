@@ -1,16 +1,21 @@
 import { useState } from "react";
+import userService from "../services/userService";
 // import { writeToLocalStorage } from "../functions/localStorage";
 import Button from "./Button";
-// import userService from "../Services/userService";
 
 const AccountListItem = ({ account, accounts, setAccounts, handlePopUp }) => {
   const [amount, setAmount] = useState("");
 
-  const handleAccountDelete = (id) => {
+  const handleAccountDelete = async (id) => {
     const updatedAccounts = accounts.filter((account) => account.id !== id);
     setAccounts(updatedAccounts);
     // writeToLocalStorage("accounts", updatedAccounts);
-    handlePopUp(true, "delete");
+    let response = await userService.destroyUser(id);
+    if (response.ok) {
+      handlePopUp(true, "delete");
+    } else {
+      alert("Error deleting user");
+    }
   };
 
   const handleCashDeposit = (id, amount) => {

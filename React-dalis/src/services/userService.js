@@ -8,29 +8,24 @@ const fetchUsers = async () => {
   }
   return [];
 };
-const addNewUser = async (newUser) => {
+const addNewUser = async (newAccount) => {
   let response = await fetch(baseURL + "/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(newUser),
+    body: JSON.stringify(newAccount),
   });
   return response;
 };
+
 const destroyUser = async (id) => {
   let response = await fetch(`${baseURL}/users/${id}`, {
     method: "DELETE",
   });
-
-  if (response.ok) {
-    // Display a success message to the user
-    alert("User deleted successfully");
-  } else {
-    // Handle errors
-    alert("Error deleting user");
-  }
+  return response;
 };
+
 const addCash = async (id, cash) => {
   const encodedId = encodeURI(id);
   return await fetch(`${baseURL}/users/${encodedId}/cash`, {

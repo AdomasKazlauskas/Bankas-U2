@@ -19,10 +19,8 @@ const AddNewAccount = ({ accounts, setAccounts, handlePopUp }) => {
     };
     let response = await userService.addNewUser(newAccount);
     if (response.ok) {
-      // Display a success message to the user
       handlePopUp(true, "create");
     } else {
-      // Handle errors
       alert("Error adding user");
     }
 
