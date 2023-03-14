@@ -44,6 +44,17 @@ function Frame() {
     setDisplayedAccounts(accounts);
   };
 
+  //bandymas grazinti info i serveri iskart po acounto prideties ir deletinimo apacioj
+
+  // const afterDeletingUsers = async (data) => {
+  //   await userService.destroyUser(data);
+  //   setRefresh((value) => !value);
+  // };
+  // const afterAddingUsers = async (data) => {
+  //   await userService.addNewUser(data);
+  //   setRefresh((value) => !value);
+  // };
+
   const handlePopUp = (isOpen, type) => {
     setShowPopUp(isOpen);
     setPopUpType(type);
@@ -61,6 +72,7 @@ function Frame() {
           setAccounts={setAccounts}
           accounts={accounts}
           handlePopUp={handlePopUp}
+          // afterAddingUsers={afterAddingUsers}
         />
         <Filter
           setDisplayedAccounts={setDisplayedAccounts}

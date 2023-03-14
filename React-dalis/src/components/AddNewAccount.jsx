@@ -7,7 +7,6 @@ import userService from "../services/userService";
 const AddNewAccount = ({ accounts, setAccounts, handlePopUp }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  // const [refresh, setRefresh] = useState(true);
 
   const handleAddAccount = async (event) => {
     event.preventDefault();
@@ -32,6 +31,14 @@ const AddNewAccount = ({ accounts, setAccounts, handlePopUp }) => {
     setName("");
     setSurname("");
   };
+
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     const users = await userService.fetchUsers();
+  //     setRefre(users);
+  //   };
+  //   fetchUsers();
+  // }, [refresh]);
 
   return (
     <form className="addToList" onSubmit={handleAddAccount}>

@@ -18,11 +18,19 @@ const AccountListItem = ({ account, accounts, setAccounts, handlePopUp }) => {
     }
   };
 
-  const handleCashDeposit = (id, amount) => {
+  const handleCashDeposit = async (id, amount) => {
     if (amount < 0) {
       alert("neleisiu");
       return;
     }
+    let response = await userService.addCash(id, amount);
+    if (response.ok) {
+      // Refresh the user list
+    } else {
+      //handle errors
+      alert("Error updating balance");
+    }
+
     const updatedAccounts = accounts.map((account) =>
       account.id === id ? { ...account, cash: account.cash + amount } : account
     );
@@ -31,11 +39,19 @@ const AccountListItem = ({ account, accounts, setAccounts, handlePopUp }) => {
     setAmount("");
   };
 
-  const handleCashWithdrawal = (id, amount) => {
+  const handleCashWithdrawal = async (id, amount) => {
     if (amount < 0 || amount > account.cash) {
       alert("I'm sorry Dave, I'm afraid I can't do that");
       return;
     }
+    let response = await userService.removeCash(id, amount);
+    if (response.ok) {
+      // Refresh the user list
+    } else {
+      // Handle errors
+      alert("Error updating balance");
+    }
+
     const updatedAccounts = accounts.map((account) =>
       account.id === id ? { ...account, cash: account.cash - amount } : account
     );
