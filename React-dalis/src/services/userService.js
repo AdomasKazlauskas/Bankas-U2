@@ -1,6 +1,6 @@
 const baseURL = "http://localhost:3003";
 
-const fetchUsers = async () => {
+export const fetchUsers = async () => {
   let response = await fetch(baseURL + "/users");
   if (response.status === 200) {
     let data = await response.json();
@@ -8,7 +8,8 @@ const fetchUsers = async () => {
   }
   return [];
 };
-const addNewUser = async (newAccount) => {
+
+export const addNewUser = async (newAccount) => {
   let response = await fetch(baseURL + "/users", {
     method: "POST",
     headers: {
@@ -19,14 +20,14 @@ const addNewUser = async (newAccount) => {
   return response;
 };
 
-const destroyUser = async (id) => {
+export const destroyUser = async (id) => {
   let response = await fetch(`${baseURL}/users/${id}`, {
     method: "DELETE",
   });
   return response;
 };
 
-const addCash = async (id, cash) => {
+export const addCash = async (id, cash) => {
   const encodedId = encodeURI(id);
   return await fetch(`${baseURL}/users/${encodedId}/cash`, {
     method: "PATCH",
@@ -36,7 +37,8 @@ const addCash = async (id, cash) => {
     body: JSON.stringify({ cash: parseInt(cash) }),
   });
 };
-const removeCash = async (id, cash) => {
+
+export const removeCash = async (id, cash) => {
   const encodedId = encodeURI(id);
   return await fetch(`${baseURL}/users/${encodedId}/cash`, {
     method: "PATCH",
@@ -45,11 +47,4 @@ const removeCash = async (id, cash) => {
     },
     body: JSON.stringify({ cash: -parseInt(cash) }),
   });
-};
-export default {
-  fetchUsers,
-  addNewUser,
-  destroyUser,
-  addCash,
-  removeCash,
 };

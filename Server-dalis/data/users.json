@@ -1,14 +1,1 @@
-[
-  {
-    "id": "9556ced9-91b4-438a-9217-f4bc591caf7f",
-    "name": "Adomas",
-    "surname": "sdvsdvsdv",
-    "cash": 25
-  },
-  {
-    "id": "40931689-2762-4415-a69d-c86673c1a9aa",
-    "name": "Adomas",
-    "surname": "Kazlauskas",
-    "cash": 0
-  }
-]
+[{"id":"9556ced9-91b4-438a-9217-f4bc591caf7f","name":"Adomas","surname":"sdvsdvsdv","cash":25},{"id":"6b72d08a-62bd-4ca9-a961-c02a04b03ec9","name":"Martynas","surname":"Klemka","cash":1000},{"id":"8f06b4a0-3cf8-4e06-a46e-b1574617b77a","name":"Adomas","surname":"Kazlauskas","cash":0}]

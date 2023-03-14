@@ -2,43 +2,32 @@ import { useState } from "react";
 // import { writeToLocalStorage } from "../functions/localStorage"; //
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
-import userService from "../services/userService";
+import { addNewUser } from "../services/userService";
 
-const AddNewAccount = ({ accounts, setAccounts, handlePopUp }) => {
+const AddNewAccount = ({ handlePopUp, setStatus }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
 
   const handleAddAccount = async (event) => {
     event.preventDefault();
+    setStatus("loading");
     const newAccount = {
       id: uuidv4(),
       cash: 0,
       name,
       surname,
     };
-    let response = await userService.addNewUser(newAccount);
+    let response = await addNewUser(newAccount);
     if (response.ok) {
       handlePopUp(true, "create");
+      setStatus("success");
     } else {
       alert("Error adding user");
+      setStatus("error");
     }
-
-    const updatedAccounts = [...accounts, newAccount];
-
-    setAccounts(updatedAccounts);
-    // writeToLocalStorage("accounts", updatedAccounts);
-
     setName("");
     setSurname("");
   };
-
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     const users = await userService.fetchUsers();
-  //     setRefre(users);
-  //   };
-  //   fetchUsers();
-  // }, [refresh]);
 
   return (
     <form className="addToList" onSubmit={handleAddAccount}>

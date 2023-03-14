@@ -6,59 +6,45 @@ import Header from "./components/Header";
 import getTotalCash from "./functions/getTotalCash";
 import sortClients from "./functions/sortClients";
 import PopUp from "./components/PopUp";
-// import { readFromLocalStorage } from "./functions/localStorage";
 import Filter from "./components/Filter";
 import TableTop from "./components/TableTop";
-import userService from "./services/userService";
+import { fetchUsers } from "./services/userService";
+// import userService from "./services/userService";
 
 function Frame() {
   const [accounts, setAccounts] = useState([]);
   const [showPopUp, setShowPopUp] = useState(false);
   const [popUpType, setPopUpType] = useState();
   const [displayedAccounts, setDisplayedAccounts] = useState([]);
-  const [refresh, setRefresh] = useState(true);
+  const [status, setStatus] = useState("idle");
+
+  const fetchAccounts = async () => {
+    const accounts = await fetchUsers();
+    if (!accounts.length) {
+      alert("No users found");
+    }
+    setAccounts(accounts);
+  };
 
   useEffect(() => {
-    // const accountFromStorage = readFromLocalStorage("accounts");
-    // setAccounts(accountFromStorage);
-
-    const fetchUsers = async () => {
-      const users = await userService.fetchUsers();
-      const sortedAccounts = sortClients(users);
-      if (!users) {
-        alert("No users found");
-      }
-      updateAccountsLists(users);
-      setDisplayedAccounts(sortedAccounts);
-    };
-    fetchUsers();
-  }, [refresh]);
+    if (status === "idle" || status === "success") {
+      fetchAccounts();
+    }
+  }, [status]);
 
   useEffect(() => {
     const sortedAccounts = sortClients(accounts);
     setDisplayedAccounts(sortedAccounts);
   }, [accounts]);
 
-  const updateAccountsLists = (accounts) => {
-    setAccounts(accounts);
-    setDisplayedAccounts(accounts);
-  };
-
-  //bandymas grazinti info i serveri iskart po acounto prideties ir deletinimo apacioj
-
-  // const afterDeletingUsers = async (data) => {
-  //   await userService.destroyUser(data);
-  //   setRefresh((value) => !value);
-  // };
-  // const afterAddingUsers = async (data) => {
-  //   await userService.addNewUser(data);
-  //   setRefresh((value) => !value);
-  // };
-
   const handlePopUp = (isOpen, type) => {
     setShowPopUp(isOpen);
     setPopUpType(type);
   };
+
+  // if (status === "loading") {
+  //   return <div style={{ color: "white" }}>loading...</div>;
+  // }
 
   return (
     <div>
@@ -69,14 +55,13 @@ function Frame() {
       />
       <div className="frame">
         <AddNewAccount
-          setAccounts={setAccounts}
           accounts={accounts}
           handlePopUp={handlePopUp}
-          // afterAddingUsers={afterAddingUsers}
+          setStatus={setStatus}
         />
         <Filter
-          setDisplayedAccounts={setDisplayedAccounts}
           accounts={accounts}
+          setDisplayedAccounts={setDisplayedAccounts}
         />
         <table>
           <thead>
@@ -88,9 +73,8 @@ function Frame() {
                 key={account.id}
                 accounts={accounts}
                 account={account}
-                setAccounts={setAccounts}
                 handlePopUp={handlePopUp}
-                setRefresh={setRefresh}
+                setStatus={setStatus}
               />
             ))}
           </tbody>
